@@ -57,7 +57,7 @@ RDEPEND=">=virtual/jdk-1.7
 	>=x11-libs/libdrm-2.4.46
 	>=x11-libs/libxcb-1.9.1
 	>=x11-libs/libxshmfence-1.1"
-S=${WORKDIR}/${PN}
+S=${WORKDIR}/android-studio
 
 src_prepare() {
 	eapply_user
