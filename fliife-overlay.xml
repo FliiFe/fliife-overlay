@@ -1,0 +1,12 @@
+<repositories encoding="unicode" version="1.1">
+  <repo priority="50" quality="experimental">
+    <name>fliife-overlay</name>
+    <description>Personal overlay (FliiFe)</description>
+    <homepage>https://github.com/FliiFe/fliife-overlay</homepage>
+    <owner>
+      <email>theophile.cailliau@gmail.com</email>
+      <name>Théophile Cailliau (FliiFe)</name>
+    </owner>
+    <source type="git">git@github.com:FliiFe/fliife-overlay.git</source>
+  </repo>
+</repositories>

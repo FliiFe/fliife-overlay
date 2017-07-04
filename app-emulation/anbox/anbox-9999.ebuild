@@ -34,9 +34,3 @@ DEPEND="sys-apps/dbus
 	dev-libs/protobuf
 	app-emulation/lxc"
 RDEPEND="${DEPEND}"
-
-src_prepare() {
-	# pkg_check_modules(DBUS_CPP dbus-cpp REQUIRED) - CMakeLists.txt needs alterted should be: kg_check_modules(DBUS_CPP dbus-c++-1 REQUIRED)
-	sed -i 's/"dbus-cpp"/"dbus-c++-1"/g' CMakeLists.txt || die "Sed failed!"
-	eapply_user
-}
