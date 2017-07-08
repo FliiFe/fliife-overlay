@@ -7,6 +7,6 @@
       <email>theophile.cailliau@gmail.com</email>
       <name>Théophile Cailliau (FliiFe)</name>
     </owner>
-    <source type="git">git@github.com:FliiFe/fliife-overlay.git</source>
+    <source type="git">https://github.com/FliiFe/fliife-overlay.git</source>
   </repo>
 </repositories>
