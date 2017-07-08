@@ -19,6 +19,7 @@ RESTRICT="mirror"
 src_prepare() {
 	cp discord.png discord-canary.png
 	cp DiscordCanary discord-canary
+	chmod +x DiscordCanary
 	eapply_user
 }
 
@@ -31,7 +32,7 @@ src_install() {
 	exeinto /usr/share/discord-canary
 	doexe "${S}"/DiscordCanary
 
-	dobin discord-canary
+	dosym /usr/share/discord-canary/DiscordCanary /usr/bin/discord-canary
 
 	domenu discord-canary.desktop
 	doicon discord-canary.png
