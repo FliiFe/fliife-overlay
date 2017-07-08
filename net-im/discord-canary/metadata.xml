@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>theophile.cailliau@gmail.com</email>
+		<name>Théophile Cailliau</name>
+	</maintainer>
+    <longdescription>
+		All-in-one voice and text chat for gamers that's free,
+		secure, and works on both your desktop and phone. 
+		
+		Stop paying for TeamSpeak servers and hassling with Skype.
+		Simplify your life.
+    </longdescription>
+	<use>
+		<flag name="desktop">Create a desktop entry</flag>
+	</use>
+</pkgmetadata>
