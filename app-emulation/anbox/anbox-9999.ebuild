@@ -12,7 +12,9 @@ else
 	KEYWORDS="~amd64"
 fi
 
-SRC_URI="https://build.anbox.io/android-images/2017/04/12/android_1_amd64.img -> android.img"
+ANDROID_IMAGE_NAME="android_3_amd64.img"
+
+SRC_URI="https://build.anbox.io/android-images/2017/07/13/${ANDROID_IMAGE_NAME}"
 
 DESCRIPTION="Run Android on Linux via containers"
 HOMEPAGE="http://anbox.io/
@@ -54,7 +56,7 @@ src_install() {
 
 	# add android image
 	insinto /var/lib/anbox
-	doins "${DISTDIR}"/android.img
+	newins "${DISTDIR}"/"${ANDROID_IMAGE_NAME}" android.img
 }
 
 # vim: set shiftwidth=0:
