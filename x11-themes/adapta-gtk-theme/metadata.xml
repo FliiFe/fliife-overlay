@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>theophile.cailliau@gmail.com</email>
+		<name>Théophile Cailliau</name>
+	</maintainer>
+    <longdescription>
+		An adaptive Gtk+ theme based on Material Design Guidelines.
+    </longdescription>
+	<use>
+		<flag name="cinnamon">Build with cinnamon support</flag>
+		<flag name="flashback">Build with flashback support</flag>
+		<flag name="unity">Build with unity support</flag>
+		<flag name="xfce">Build with xfce support</flag>
+		<flag name="mate">Build with mate support</flag>
+		<flag name="openbox">Build with openbox support</flag>
+		<flag name="gtk_legacy">Build with gtk_legacy support</flag>
+		<flag name="gtk_next">Build with gtk_next support</flag>
+		<flag name="parallel">Parallel build (can cause failure to build in some cases)</flag>
+	</use>
+</pkgmetadata>
