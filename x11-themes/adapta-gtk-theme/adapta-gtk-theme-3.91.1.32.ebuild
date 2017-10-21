@@ -24,7 +24,6 @@ RDEPEND="${DEPEND}"
 src_configure() {
 	mkdir -p "${S}/dest"
 	./autogen.sh \
-		$(use_enable gnome) \
 		$(use_enable cinnamon) \
 		$(use_enable flashback) \
 		$(use_enable unity) \
@@ -34,6 +33,7 @@ src_configure() {
 		$(use_enable gtk_legacy) \
 		$(use_enable gtk_next) \
 		$(use_enable parallel) \
+		--disable-gnome
 		--prefix="${S}/dest"
 }
 
