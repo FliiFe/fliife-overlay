@@ -3,12 +3,12 @@
 
 EAPI=5
 
-inherit eutils toolchain-funcs git-2
+inherit eutils autotools toolchain-funcs git-2
 
 DESCRIPTION="Simple screen locker"
 HOMEPAGE="https://github.com/Arcaena/i3lock-color"
 EGIT_REPO_URI="https://github.com/Arcaena/i3lock-color.git"
-EGIT_BRANCH=master
+EGIT_COMMIT="refs/tags/${PV}-c"
 
 LICENSE="BSD"
 SLOT="0"
@@ -33,8 +33,9 @@ pkg_setup() {
 }
 
 src_prepare() {
-	sed -i -e 's:login:system-auth:' ${MY_PN}.pam || die
-	sed -i -e '/MANDIR/d' Makefile || die
+	eautoreconf || die
+	./configure || die
+
 	epatch_user
 }
 
