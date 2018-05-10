@@ -8,7 +8,7 @@ inherit cmake-utils git-r3
 DESCRIPTION="A fast and easy-to-use tool for creating status bars."
 HOMEPAGE="https://github.com/jaagr/polybar"
 EGIT_REPO_URI="https://github.com/jaagr/polybar.git"
-EGIT_CLONE_TYPE="shallow"
+# EGIT_CLONE_TYPE="shallow"
 EGIT_COMMIT="${PV}"
 
 LICENSE="MIT"
@@ -32,6 +32,13 @@ RDEPEND="
 DEPEND="${RDEPEND}"
 
 CMAKE_BUILD_TYPE=Release
+
+src_prepare() {
+	# Fix for compilation issue due to x11-proto update
+	# comes from the AUR package
+	git -C 'lib/xpp' checkout 00165e1a6d5dd61bc153e1352b21ec07fc81245d
+	eapply_user
+}
 
 src_configure() {
 	local mycmakeargs=(
