@@ -14,7 +14,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 IUSE=""
 
-DEPEND=">=dev-lang/go-1.5.1:= dev-lang/ruby"
+DEPEND=">=dev-lang/go-1.5.1:= dev-lang/ruby dev-ruby/bundler"
 RDEPEND=">=dev-vcs/git-1.7.3"
 
 S="${WORKDIR}/${P//_/-}"
