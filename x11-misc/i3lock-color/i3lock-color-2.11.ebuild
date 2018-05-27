@@ -6,8 +6,8 @@ EAPI=5
 inherit eutils autotools toolchain-funcs git-2
 
 DESCRIPTION="Simple screen locker"
-HOMEPAGE="https://github.com/Arcaena/i3lock-color"
-EGIT_REPO_URI="https://github.com/Arcaena/i3lock-color.git"
+HOMEPAGE="https://github.com/PandorasFox/i3lock-color"
+EGIT_REPO_URI="https://github.com/PandorasFox/i3lock-color.git"
 EGIT_COMMIT="refs/tags/${PV}-c"
 
 LICENSE="BSD"
