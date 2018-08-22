@@ -36,6 +36,7 @@ core-foundation-sys-0.6.0
 core-graphics-0.13.0
 core-graphics-0.14.0
 core-text-9.2.0
+dirs-1.0.2
 dlib-0.4.1
 downcast-rs-1.0.3
 dtoa-0.4.2
@@ -119,6 +120,7 @@ slab-0.4.0
 smallvec-0.6.1
 smithay-client-toolkit-0.2.3
 stable_deref_trait-1.1.0
+static_assertions-0.2.5
 strsim-0.7.0
 syn-0.14.2
 tempfile-3.0.2
