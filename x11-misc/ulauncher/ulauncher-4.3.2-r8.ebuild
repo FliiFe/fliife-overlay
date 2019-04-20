@@ -16,7 +16,8 @@ if [[ ${PV} == 9999 ]];then
 	KEYWORDS=""
 	EGIT_REPO_URI="https://github.com/Ulauncher/${PN^}.git"
 else
-	SRC_URI="https://github.com/Ulauncher/${PN^}/archive/${PV}.${PR}.tar.gz -> ulauncher_${PV}.${PR}.tar.gz"
+	# SRC_URI="https://github.com/Ulauncher/${PN^}/archive/${PV}.${PR}.tar.gz -> ulauncher_${PV}.${PR}.tar.gz"
+	SRC_URI="https://github.com/Ulauncher/${PN^}/releases/download/${PV}.${PR}/ulauncher_${PV}.${PR}.tar.gz -> ulauncher_${PV}.${PR}.tar.gz"
 	KEYWORDS="~amd64 ~x86"
 	S="${WORKDIR}/${PN^}-${PV}.${PR}"
 fi
@@ -29,9 +30,8 @@ PYTHON_REQ_USE="sqlite"
 
 DEPEND="
 	dev-python/python-distutils-extra[${PYTHON_USEDEP}]
-	sys-apps/yarn
+	sys-apps/yarn"
 
-"
 RDEPEND="${DEPEND}
 	dev-python/dbus-python[${PYTHON_USEDEP}]
 	dev-python/pygobject:3[${PYTHON_USEDEP}]
