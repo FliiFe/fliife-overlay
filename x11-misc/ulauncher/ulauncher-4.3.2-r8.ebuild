@@ -19,7 +19,7 @@ else
 	# SRC_URI="https://github.com/Ulauncher/${PN^}/archive/${PV}.${PR}.tar.gz -> ulauncher_${PV}.${PR}.tar.gz"
 	SRC_URI="https://github.com/Ulauncher/${PN^}/releases/download/${PV}.${PR}/ulauncher_${PV}.${PR}.tar.gz -> ulauncher_${PV}.${PR}.tar.gz"
 	KEYWORDS="~amd64 ~x86"
-	S="${WORKDIR}/${PN^}-${PV}.${PR}"
+	S="${WORKDIR}/${PN}"
 fi
 
 LICENSE="GPL-3"
@@ -49,11 +49,6 @@ BDEPEND="${PYTHON_DEPS}"
 
 src_prepare(){
 	find -iname "*.py" | xargs sed -i 's=\(^#! */usr/bin.*\)python *$=\1python2='
-	pushd data/preferences
-	yarn install
-	yarn build
-	rm -rf node_modules
-	popd
 	distutils-r1_src_prepare
 }
 
