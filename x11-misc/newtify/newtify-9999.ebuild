@@ -16,3 +16,4 @@ IUSE=""
 
 DEPEND="net-libs/nodejs[npm]"
 RDEPEND="${DEPEND}"
+RESTRICT="network-sandbox"
