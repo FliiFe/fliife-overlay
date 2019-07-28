@@ -1,7 +1,7 @@
 #!/bin/bash
 # This script is needed as Ubuntu mirrors in Gentoo are unmaintained at present (refer b.g.o #494882)
 
-## Usage: ./ubuntu_mirrors_update.sh > thirdpartymirrors
+## Usage: ./unity_mirrors_update.sh > thirdpartymirrors
 
 # Grab list of working mirrors #
 lynx -width 500 -dump https://launchpad.net/ubuntu/+archivemirrors | sed 's/^ *//g' > /tmp/ubuntu_mirrors.txt || exit 1
@@ -14,4 +14,4 @@ for each in $(echo "${http_linkid_array[@]}"); do
 	http_link_array+=( $(grep "^${each}\\." /tmp/ubuntu_mirrors.txt | awk '{print $2}') )
 done
 # Final output #
-echo "ubuntu	${http_link_array[@]}"
+echo "unity	${http_link_array[@]}"

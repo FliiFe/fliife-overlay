@@ -20,16 +20,21 @@
 
 
 inherit toolchain-funcs
-EXPORT_FUNCTIONS pkg_setup pkg_postinst
+EXPORT_FUNCTIONS pkg_postinst
 
 #---------------------------------------------------------------------------------------------------------------------------------#
 ### GLOBAL ECLASS INHERIT DEFAULTS ##
 
 ## vala.eclass ##
-# Set base sane vala version for all packages requiring vala, override in ebuild if or when specific higher versions are needed #
-export VALA_MIN_API_VERSION=${VALA_MIN_API_VERSION:=0.32}	# Needs to be >=${minimal_supported_minor_version} from vala.eclass
-export VALA_MAX_API_VERSION=${VALA_MAX_API_VERSION:=0.32}
+# Set base sane vala version for all packages requiring vala, override in ebuild if or when specific higher/lower versions are needed #
+export VALA_MIN_API_VERSION=${VALA_MIN_API_VERSION:=0.36}	# Needs to be >=${minimal_supported_minor_version} from vala.eclass
+export VALA_MAX_API_VERSION=${VALA_MAX_API_VERSION:=0.36}
 export VALA_USE_DEPEND="vapigen"
+
+## Ubuntu delete superceded release tarballs from their mirrors if the release is not Long Term Supported (LTS) ##
+# Download tarballs from the always available Launchpad archive #
+UURL="https://launchpad.net/ubuntu/+archive/primary/+files"
+
 #---------------------------------------------------------------------------------------------------------------------------------#
 
 [[ "${URELEASE}" == *trusty* ]] && UVER_RELEASE="14.04"
@@ -39,6 +44,10 @@ export VALA_USE_DEPEND="vapigen"
 [[ "${URELEASE}" == *xenial* ]] && UVER_RELEASE="16.04"
 [[ "${URELEASE}" == *yakkety* ]] && UVER_RELEASE="16.10"
 [[ "${URELEASE}" == *zesty* ]] && UVER_RELEASE="17.04"
+[[ "${URELEASE}" == *artful* ]] && UVER_RELEASE="17.10"
+[[ "${URELEASE}" == *bionic* ]] && UVER_RELEASE="18.04"
+[[ "${URELEASE}" == *cosmic* ]] && UVER_RELEASE="18.10"
+[[ "${URELEASE}" == *disco* ]] && UVER_RELEASE="19.04"
 
 PV="${PV%%[a-z]_p*}"	# For package-3.6.0a_p0_p02
 PV="${PV%%[a-z]*}"	# For package-3.6.0a
@@ -123,54 +132,6 @@ if [ "${PN}" = "ubuntu-sources" ]; then
 else
 	UVER="${PVR_PL_MAJOR}ubuntu${PVR_PL_MINOR}"
 fi
-
-# @FUNCTION: ubuntu-versionator_pkg_setup
-# @DESCRIPTION:
-# Check we have a valid profile set and the correct
-# masking in place for the overlay to work
-ubuntu-versionator_pkg_setup() {
-	debug-print-function ${FUNCNAME} "$@"
-
-        # Use a profile to set things like make.defaults and use.mask only, and to fill $SUBSLOT for unity-base/unity-build-env:0/${SUBSLOT}
-        # unity-base/unity-build-env creates symlinks in /etc/portage/package.{keywords,mask,use}/unity-portage.{keywords,mask,use}
-	#	pointing to overlay's profiles/<release>/unity-portage.{keywords,mask,use}
-        #   This allows masking category/package::gentoo and overriding IUSE in /etc/portage/make.conf, which cannot be done in profiles/
-        #   Using profiles/ also sets a sane base set of USE flags by all profiles inheriting the Gentoo 'desktop' profile
-
-        # if [ -z "${UNITY_BUILD_OK}" ]; then     # Creates a oneshot so it only checks on the 1st package in the emerge list
-		# CURRENT_PROFILE=$(readlink /etc/portage/make.profile)
-
-        #         if [ -z "$(echo ${CURRENT_PROFILE} | grep unity-gentoo)" ]; then
-        #                 die "Invalid profile detected, please select a 'unity-gentoo' profile for your architecture shown in 'eselect profile list'"
-        #         else
-			# PROFILE_RELEASE=$(echo "${CURRENT_PROFILE}" | awk -F/ '{print $(NF-1)}')
-        #         fi
-
-        #         has_version unity-base/unity-build-env:0/${PROFILE_RELEASE} || \
-			# die "'${PROFILE_RELEASE}' profile detected, please run 'emerge unity-base/unity-build-env:0/${PROFILE_RELEASE}' to setup package masking"
-        #         export UNITY_BUILD_OK=1
-        # fi
-
-	# Minimum system-wide GCC version required #
-	[[ "${PROFILE_RELEASE}" == utopic ]] && GCC_MINIMUM="4.8.5"
-	[[ "${PROFILE_RELEASE}" == vivid ]] && GCC_MINIMUM="4.9.4"
-	[[ "${PROFILE_RELEASE}" == wily ]] && GCC_MINIMUM="5.4.0"
-	[[ "${PROFILE_RELEASE}" == xenial ]] && GCC_MINIMUM="5.4.0"
-	[[ "${PROFILE_RELEASE}" == yakkety ]] && GCC_MINIMUM="5.4.0"
-	[[ "${PROFILE_RELEASE}" == zesty ]] && GCC_MINIMUM="6.3.0"
-	GCC_MINIMUM_MAJOR="${GCC_MINIMUM%%.*}"
-	GCC_MINIMUM_MINOR="${GCC_MINIMUM##*.}"
-
-	if [[ $(gcc-major-version) -lt "${GCC_MINIMUM_MAJOR}" ]] || \
-		( [[ $(gcc-major-version) -eq "${GCC_MINIMUM_MAJOR}" && $(gcc-minor-version) -lt "${GCC_MINIMUM_MINOR}" ]] ); then
-			die "The selected '${PROFILE_RELEASE}' profile requires your system be built using >=sys-devel/gcc:${GCC_MINIMUM}, please consult the output of 'gcc-config -l'"
-	fi
-
-	# Disable ld.gold linker if selected as it causes undefined reference linking failures (see net-libs/ubuntu-download-manager linking with sys-libs/libnih) #
-	#	This type of build failure is intended by upstream (see https://sourceware.org/bugzilla/show_bug.cgi?id=10238)
-	[[ "$(ld -v | grep gold)" ]] && \
-		die "The selected 'ld' library linker must be set to 'ld.bfd' due to link failures using other experimental linkers, as root do 'binutils-config --linker ld.bfd'"
-}
 
 # @FUNCTION: ubuntu-versionator_src_prepare
 # @DESCRIPTION:
