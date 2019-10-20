@@ -18,7 +18,7 @@ IUSE=""
 MY_PN=i3lock
 
 RDEPEND="!x11-misc/i3lock
-	virtual/pam
+	sys-libs/pam
 	dev-libs/libev
 	>=x11-libs/libxkbcommon-0.5.0[X]
 	x11-libs/libxcb[xkb]
