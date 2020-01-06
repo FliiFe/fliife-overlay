@@ -29,8 +29,9 @@ RDEPEND="dev-lang/ocaml:=
 	>=dev-ml/dose3-5:=
 	dev-ml/uutf:=
 	dev-ml/jsonm:=
-	dev-ml/opam-file-format:=
 "
+	# dev-ml/opam-file-format:=
+
 DEPEND="${RDEPEND}
 	dev-ml/findlib
 	sys-apps/bubblewrap
