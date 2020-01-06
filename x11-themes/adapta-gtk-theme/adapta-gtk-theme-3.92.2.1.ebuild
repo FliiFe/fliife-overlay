@@ -13,8 +13,8 @@ KEYWORDS="~amd64 ~x86"
 IUSE="cinnamon flashback unity xfce mate openbox gtk_legacy gtk_next parallel"
 
 DEPEND="media-gfx/inkscape
-	www-misc/libsass
-	www-misc/sassc
+	dev-libs/libsass
+	dev-lang/sassc
 	dev-libs/libxml2
 	x11-libs/gdk-pixbuf
 	x11-libs/gtk+:3
