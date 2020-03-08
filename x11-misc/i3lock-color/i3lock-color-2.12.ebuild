@@ -3,12 +3,12 @@
 
 EAPI=5
 
-inherit eutils autotools toolchain-funcs git-2
+inherit eutils autotools toolchain-funcs git-r3
 
 DESCRIPTION="Simple screen locker"
 HOMEPAGE="https://github.com/PandorasFox/i3lock-color"
 EGIT_REPO_URI="https://github.com/PandorasFox/i3lock-color.git"
-EGIT_COMMIT="refs/tags/${PV}-c"
+EGIT_COMMIT="refs/tags/${PV}.c"
 
 LICENSE="BSD"
 SLOT="0"
@@ -23,7 +23,7 @@ RDEPEND="!x11-misc/i3lock
 	>=x11-libs/libxkbcommon-0.5.0[X]
 	x11-libs/libxcb[xkb]
 	x11-libs/xcb-util
-	x11-libs/cairo[xcb]"
+	x11-libs/cairo"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig"
 DOCS=( CHANGELOG README.md )
